@@ -25,6 +25,6 @@ urlpatterns = [
 ]
 
 urlpatterns = [
-    path("kanban/", include("kanban.urls")),
+    path("kanban/", include("kanban.urls")), # この行を追加
     path('admin/', admin.site.urls),
 ]
