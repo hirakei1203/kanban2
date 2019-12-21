@@ -4,10 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, resolve_url
 from django.views.generic import DetailView, UpdateView
-
-from .forms import UserForm
-
 from django.http import HttpResponse
+from .forms import UserForm
+from .mixin import OnlyYouMixin
 # Create your views here.
 
 def index(request):
@@ -39,7 +38,7 @@ class UserDetailView(DetailView):
   model = User
   template_name ="kanban/users/detail.html"
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(OnlyYouMixin, UpdateView):
   model = User
   template_name = "kanban/users/update.html"
   form_class = UserForm
