@@ -42,4 +42,7 @@ class UserDetailView(DetailView):
 class UserUpdateView(UpdateView):
   model = User
   template_name = "kanban/users/update.html"
-  
+  form_class = UserForm
+
+  def get_success_url(self):
+    return resolve_url('kanban:users_detail', pk=self.kwargs['pk'])
